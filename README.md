@@ -1,6 +1,39 @@
+# Transaction Manager
+
+## Overview
+
+The Transaction Manager is a web application designed to manage and track transactions efficiently. This project is built using modern web development technologies, including Next.js and Tailwind CSS.
+This project is hosted on https://transaction-manager-nine.vercel.app
+
+## Features
+
+- **User Authentication**: Secure user authentication and authorization.
+- **Transaction Tracking**: Add, view, and manage transactions.
+- **Responsive Design**: Optimized for various screen sizes.
+- **Data Visualization**: Graphical representation of transaction data.
+
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
+
+### Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/transaction-manager.git
+   cd transaction-manager
+
+2. Install dependencies:
+   ```sh
+   npm install
+   
+3. Set up environment variables:
+   Copy the .env.example file to .env and fill in the required variables.
+   
 
 First, run the development server:
 
