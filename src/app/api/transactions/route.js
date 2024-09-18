@@ -8,6 +8,7 @@ export async function GET(request) {
   const year = searchParams.get('year');
   const type = searchParams.get('type');
   const category = searchParams.get('category');
+  const mode = searchParams.get('mode');  // New mode filter
 
   await dbConnect();
 
@@ -19,14 +20,22 @@ export async function GET(request) {
   }
   if (type) query.type = type;
   if (category) query.category = category;
+  if (mode) query.mode = mode;  // Apply mode filter
 
   const transactions = await Transaction.find(query).sort({ date: -1 });
   return NextResponse.json(transactions);
 }
 
 export async function POST(request) {
-  const { description, amount, type, category } = await request.json();
+  const { description, amount, type, category, mode, date } = await request.json();
   await dbConnect();
-  const transaction = await Transaction.create({ description, amount, type, category });
+  const transaction = await Transaction.create({
+    description,
+    amount,
+    type,
+    category,
+    mode,
+    date: date || Date.now(),  // Save date or use current date if not provided
+  });
   return NextResponse.json(transaction, { status: 201 });
 }

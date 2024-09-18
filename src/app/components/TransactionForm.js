@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { FaPlus, FaEdit } from 'react-icons/fa';
+import { FaPlus, FaEdit } from 'react-icons/fa'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';;
 
 const expenseCategories = ['Transport', 'Food', 'Clothes', 'Accessories', 'Other'];
 const incomeCategories = ['Salary', 'Freelance', 'Investment', 'Other'];
@@ -9,17 +11,24 @@ export default function TransactionForm({ onSubmit, initialData = null }) {
   const [amount, setAmount] = useState(initialData?.amount || '');
   const [type, setType] = useState(initialData?.type || 'expense');
   const [category, setCategory] = useState(initialData?.category || '');
+  const [mode, setMode] = useState(initialData?.mode || 'cash');  // New state for mode of payment
+  const [date, setDate] = useState(initialData?.date ? new Date(initialData.date).toISOString().split('T')[0] : '');  // New state for date
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ description, amount: parseFloat(amount), type, category });
+    onSubmit({ description, amount: parseFloat(amount), type, category, mode, date });
+    toast.success(`${initialData ? 'Updated' : 'Added'} Transaction Successfully`);
     setDescription('');
     setAmount('');
     setType('expense');
     setCategory('');
+    setMode('cash');
+    setDate('');
   };
 
   return (
+    <>
+    <ToastContainer />
     <form onSubmit={handleSubmit} className="mb-4">
       <div className="flex flex-col gap-2">
         <input
@@ -66,6 +75,22 @@ export default function TransactionForm({ onSubmit, initialData = null }) {
                 </option>
               ))}
         </select>
+        <select
+          value={mode}
+          onChange={(e) => setMode(e.target.value)}
+          className="input-field w-full"
+          required
+        >
+          <option value="cash">Cash</option>
+          <option value="online">Online</option>
+        </select>
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          className="input-field w-full"
+          required
+        />
         <button
           type="submit"
           className="btn-primary"
@@ -74,5 +99,6 @@ export default function TransactionForm({ onSubmit, initialData = null }) {
         </button>
       </div>
     </form>
+    </>
   );
 }

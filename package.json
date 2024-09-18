@@ -10,13 +10,19 @@
   },
   "dependencies": {
     "chart.js": "^4.4.3",
+    "date-fns": "^3.6.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.3",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.1",
     "next": "14.2.5",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
+    "react-csv": "^2.2.2",
     "react-dom": "^18",
-    "react-icons": "^5.2.1"
+    "react-icons": "^5.2.1",
+    "react-toastify": "^10.0.5",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "eslint": "^8",

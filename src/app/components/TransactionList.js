@@ -10,6 +10,7 @@ export default function TransactionList({ transactions, onDelete, onEdit }) {
             <th className="px-4 py-2 text-left">Amount</th>
             <th className="px-4 py-2 text-left">Type</th>
             <th className="px-4 py-2 text-left">Category</th>
+            <th className="px-4 py-2 text-left">Mode</th> {/* New column */}
             <th className="px-4 py-2 text-left">Date</th>
             <th className="px-4 py-2 text-left">Actions</th>
           </tr>
@@ -24,8 +25,9 @@ export default function TransactionList({ transactions, onDelete, onEdit }) {
               </td>
               <td className="px-4 py-2">{transaction.type}</td>
               <td className="px-4 py-2">{transaction.category}</td>
+              <td className="px-4 py-2">{transaction.mode}</td> {/* New mode column */}
               <td className="px-4 py-2">
-                {new Date(transaction.date).toLocaleDateString()}
+                {new Date(transaction.date).toLocaleDateString('en-GB')} {/* Updated to DD/MM/YYYY format */}
               </td>
               <td className="px-4 py-2">
                 <button

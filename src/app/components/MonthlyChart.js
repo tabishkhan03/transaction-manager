@@ -7,7 +7,7 @@ export default function MonthlyChart({ transactions }) {
   const expenseData = {};
   const incomeData = {};
 
-  transactions.forEach((transaction) => {
+  transactions?.forEach((transaction) => {
     const data = transaction.type === 'expense' ? expenseData : incomeData;
     if (data[transaction.category]) {
       data[transaction.category] += transaction.amount;
