@@ -2,13 +2,14 @@ import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { CSVLink } from 'react-csv';
 
-export default function ExportButtons({ transactions, cashBalance, onlineBalance, totalCashExpense, totalOnlineExpense }) {
+export default function ExportButtons({carriedOnlineBalance, carriedCashBalance, transactions, cashBalance, onlineBalance, totalCashExpense, totalOnlineExpense }) {
   // Sort transactions by date, oldest first
   const sortedTransactions = [...transactions].sort((a, b) => new Date(a.date) - new Date(b.date));
-
+  
   // Calculate running balances
-  let runningCashBalance = 0;
-  let runningOnlineBalance = 0;
+  let runningCashBalance = carriedCashBalance;
+  let runningOnlineBalance = carriedOnlineBalance;
+  
   const transactionsWithBalance = sortedTransactions.map(transaction => {
     if (transaction.mode === 'cash') {
       runningCashBalance += transaction.type === 'income' ? transaction.amount : -transaction.amount;

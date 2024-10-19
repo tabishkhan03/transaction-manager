@@ -169,6 +169,8 @@ export default function Home() {
         onlineBalance={onlineBalance + carriedOnlineBalance}
         totalCashExpense={totalCashExpense}
         totalOnlineExpense={totalOnlineExpense}
+        carriedCashBalance={carriedCashBalance}
+        carriedOnlineBalance={carriedOnlineBalance}
       />
 
 
